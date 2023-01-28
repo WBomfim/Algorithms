@@ -1,22 +1,28 @@
-def find_duplicate(nums):
-    if not nums or len(nums) == 1:
-        return False
+from challenges.challenge_anagrams import merge_ordered
 
-    for i in range(len(nums)):
-        if isinstance(nums[i], str) or nums[i] < 0:
+
+def merge_sort(array):
+    if len(array) <= 1:
+        return array
+
+    mid = len(array) // 2
+    left, right = merge_sort(array[:mid]), merge_sort(array[mid:])
+
+    return merge_ordered(left, right, array.copy())
+
+
+def find_duplicate(nums):
+    sorted_nums = merge_sort(nums)
+
+    for i in range(len(sorted_nums) - 1):
+        if (
+            not nums
+            or not isinstance(sorted_nums[i], int)
+            or sorted_nums[i] < 0
+        ):
             return False
 
-        if count_duplicate(nums, nums[i]) > 1:
-            return nums[i]
+        if sorted_nums[i] == sorted_nums[i + 1]:
+            return sorted_nums[i]
 
     return False
-
-
-def count_duplicate(nums, num):
-    count = 0
-
-    for i in range(len(nums)):
-        if nums[i] == num:
-            count += 1
-
-    return count
