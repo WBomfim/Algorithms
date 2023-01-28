@@ -16,11 +16,10 @@ def merge_sort_string(string):
     left = merge_sort_string(string[:mid])
     right = merge_sort_string(string[mid:])
 
-    return merge_ordered(left, right, string)
+    return "".join(merge_ordered(left, right, list(string)))
 
 
-def merge_ordered(left, right, string):
-    merged = list(string)
+def merge_ordered(left, right, merged):
     left_index, right_index = 0, 0
 
     while left_index < len(left) and right_index < len(right):
@@ -38,4 +37,4 @@ def merge_ordered(left, right, string):
     for right_index in range(right_index, len(right)):
         merged[left_index + right_index] = right[right_index]
 
-    return "".join(merged)
+    return merged
