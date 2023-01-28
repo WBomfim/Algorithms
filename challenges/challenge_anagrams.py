@@ -8,6 +8,7 @@ def is_anagram(first_string, second_string):
     return (first_string, second_string, first_string == second_string)
 
 
+# Funções criadas a partir do código extraído do course da Trybe
 def merge_sort_string(string):
     if len(string) <= 1:
         return string
@@ -16,10 +17,11 @@ def merge_sort_string(string):
     left = merge_sort_string(string[:mid])
     right = merge_sort_string(string[mid:])
 
-    return "".join(merge_ordered(left, right, list(string)))
+    return merge_ordered(left, right, string)
 
 
-def merge_ordered(left, right, merged):
+def merge_ordered(left, right, string):
+    merged = list(string)
     left_index, right_index = 0, 0
 
     while left_index < len(left) and right_index < len(right):
@@ -37,4 +39,4 @@ def merge_ordered(left, right, merged):
     for right_index in range(right_index, len(right)):
         merged[left_index + right_index] = right[right_index]
 
-    return merged
+    return "".join(merged)
