@@ -8,7 +8,7 @@ def merge_sort(array):
     mid = len(array) // 2
     left, right = merge_sort(array[:mid]), merge_sort(array[mid:])
 
-    return merge_ordered(left, right, array.copy())
+    return merge_ordered(left, right, array)
 
 
 def find_duplicate(nums):
